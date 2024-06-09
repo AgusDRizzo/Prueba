@@ -99,7 +99,7 @@ platformdirs==3.10.0
 ply==3.11
 prometheus-client==0.14.1
 prompt-toolkit==3.0.43
-protobuf==3.9.2
+protobuf
 psutil==5.9.0
 pure-eval==0.2.2
 pyarrow==11.0.0
@@ -142,9 +142,6 @@ soupsieve==2.5
 stack-data==0.2.0
 streamlit==1.32.0
 tenacity==8.2.2
-tensorboard==2.10.0
-tensorboard-data-server==0.6.1
-tensorboard-plugin-wit==1.8.1
 termcolor==2.1.0
 terminado==0.17.1
 threadpoolctl==2.2.0
