@@ -28,7 +28,7 @@ def main():
         multiplelines = st.selectbox(' Customer has multiple lines:', [1, 0])
         internetservice= st.selectbox(' Customer has internet service:', [1, 0])
         deviceprotection = st.selectbox(' Customer has device protection:', [1, 0])
-        monthlycharges= st.number_input('Monthly charges :', min_value=-10, max_value=119, value=0)
+        monthlycharges= st.number_input('Monthly charges :', min_value=0, max_value=119, value=0)
         longdistance = st.number_input('Total Long distance charges :', min_value=0, max_value=3600, value=0)
         offer = st.selectbox(' Customer has accepted offer:', [1, 0])
         north = st.selectbox(' Customer lives north:', [1, 0])
@@ -53,7 +53,7 @@ def main():
             X = dv.transform([input_dict])
             y_pred = model_rl.predict(X)
             churn = bool(y_pred)
-            output_prob = float(y_pred)
+            output_prob = model_rl.predict_proba(X).max().round(2)
             output = churn
   
         st.success('Stay: {0}, Risk Score: {1}'.format(output, output_prob))
