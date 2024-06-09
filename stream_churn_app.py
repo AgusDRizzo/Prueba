@@ -6,7 +6,7 @@ model_file = 'model_C=1.0.bin'
  
  
 with open(model_file, 'rb') as f_in:
-    dv, model = pickle.load(f_in)
+    dv, model_rl = pickle.load(f_in)
  
  
 def main():
@@ -51,12 +51,12 @@ def main():
         if st.button("Predict"):
             
             X = dv.transform([input_dict])
-            y_pred = model.predict_proba(X)[0, 1]
-            churn = y_pred >= 0.5
+            y_pred = model_rl.predict(X)
+            churn = bool(y_pred)
             output_prob = float(y_pred)
-            output = bool(churn)
+            output = churn
   
-        st.success('Churn: {0}, Risk Score: {1}'.format(output, output_prob))
+        st.success('Stay: {0}, Risk Score: {1}'.format(output, output_prob))
  
     if add_selectbox == 'Batch':
  
@@ -64,8 +64,8 @@ def main():
         if file_upload is not None:
             data = pd.read_csv(file_upload)
             X = dv.transform([data])
-            y_pred = model.predict_proba(X)[0, 1]
-            churn = y_pred >= 0.5
+            y_pred = model_rl.predict(X)
+            churn = y_pred 
             churn = bool(churn)
             st.write(churn)
  
