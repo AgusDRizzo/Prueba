@@ -2,6 +2,7 @@ import pickle
 import streamlit as st
 import pandas as pd
 from PIL import Image
+from sklearn.linear_model import LogisticRegression
 model_file = 'model_C=1.0.bin'
  
  
