@@ -8,7 +8,7 @@ model_file = 'model_C=1.0.bin'
  
  
 with open(model_file, 'rb') as f_in:
-    dv, model_rl = pickle.load(f_in)
+     model_rl = pickle.load(f_in)
  
  
 def main():
@@ -38,21 +38,21 @@ def main():
         output_prob = ""
         input_dict={
                 "Age":Age,
-                "Tenure in Months": Tenure,
-                "Total Refunds": refunds,
                 "Number of Dependents": dependents,
+                "Tenure in Months": Tenure,
                 "Phone Service": phoneservice,
                 "Multiple Lines": multiplelines,
-                "Internet Service": internetservice,
                 "Device Protection Plan": deviceprotection,
                 "Monthly Charge": monthlycharges,
+                "Total Refunds": refunds,
                 "Total Long Distance Charges": longdistance,
                 "Offer": offer,
+                "Internet Service": internetservice,
                 "North": north
             }
         if st.button("Predict"):
             
-            X = dv.transform([input_dict])
+            X = pd.DataFrame.from_dict([input_dict])
             y_pred = model_rl.predict(X)
             churn = bool(y_pred)
             output_prob = model_rl.predict_proba(X).max().round(2)
