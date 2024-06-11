@@ -12,15 +12,21 @@ with open(model_file, 'rb') as f_in:
  
  
 def main():
+    image3 = Image.open('Logo-4.png')
+    st.image(image3)
+    #st.markdown("<h1 style='text-align: center; color: grey;'>RetainIT</h1>", unsafe_allow_html=True)
+    st.title("Predicting Customer Churn")
+    
     #image = Image.open('images/icone.png') 
-    #image2 = Image.open('images/image.png')
+    image2 = Image.open('Logo-3.tif')
     #st.image(image,use_column_width=False) 
+    st.sidebar.image(image2)
     add_selectbox = st.sidebar.selectbox(
     "How would you like to predict?",
     ("Online", "Batch"))
     st.sidebar.info('This app is created to predict Customer Churn')
-    #st.sidebar.image(image2)
-    st.title("Predicting Customer Churn")
+    
+    
     if add_selectbox == 'Online':
         Age = st.number_input('Age:', min_value=19, max_value=80, value=19)
         Tenure = st.number_input(' Tenure in months:', min_value=0, max_value=72, value=0 )
@@ -63,7 +69,7 @@ def main():
  
     if add_selectbox == 'Batch':
  
- 
+
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
             data = pd.read_csv(file_upload)
