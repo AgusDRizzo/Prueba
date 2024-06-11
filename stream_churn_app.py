@@ -26,14 +26,14 @@ def main():
         Tenure = st.number_input(' Tenure in months:', min_value=0, max_value=72, value=0 )
         refunds = st.number_input(' Total refunds:', min_value=0, max_value=51, value=0)
         dependents = st.number_input(' Customer has  dependents:', min_value=0, max_value=9, value=0)
-        phoneservice = st.selectbox(' Customer has phoneservice:', [1, 0])
-        multiplelines = st.selectbox(' Customer has multiple lines:', [1, 0])
-        internetservice= st.selectbox(' Customer has internet service:', [1, 0])
-        deviceprotection = st.selectbox(' Customer has device protection:', [1, 0])
+        phoneservice = st.selectbox(' Customer has phoneservice:', ['Yes', 'No'])
+        multiplelines = st.selectbox(' Customer has multiple lines:', ['Yes', 'No'])
+        internetservice= st.selectbox(' Customer has internet service:', ['Yes', 'No'])
+        deviceprotection = st.selectbox(' Customer has device protection:', ['Yes', 'No'])
         monthlycharges= st.number_input('Monthly charges :', min_value=0, max_value=119, value=0)
         longdistance = st.number_input('Total Long distance charges :', min_value=0, max_value=3600, value=0)
-        offer = st.selectbox(' Customer has accepted offer:', [1, 0])
-        north = st.selectbox(' Customer lives north:', [1, 0])
+        offer = st.selectbox(' Customer has accepted offer:', ['Yes', 'No'])
+        north = st.selectbox(' Customer lives north:', ['Yes', 'No'])
         output= ""
         output_prob = ""
         input_dict={
@@ -53,6 +53,7 @@ def main():
         if st.button("Predict"):
             
             X = pd.DataFrame.from_dict([input_dict])
+            X[['Phone Service', 'Multiple Lines','Device Protection Plan', 'Internet Service', 'Offer', 'North']] = X[['Phone Service', 'Multiple Lines','Device Protection Plan', 'Internet Service', 'Offer', 'North']].replace({'Yes': 1, 'No': 0})
             y_pred = model_rl.predict(X)
             churn = bool(y_pred)
             output_prob = model_rl.predict_proba(X).max().round(2)
@@ -61,6 +62,7 @@ def main():
         st.success('Stay: {0}, Risk Score: {1}'.format(output, output_prob))
  
     if add_selectbox == 'Batch':
+ 
  
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
