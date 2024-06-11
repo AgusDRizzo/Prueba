@@ -15,7 +15,7 @@ def main():
     image3 = Image.open('Logo-4.png')
     st.image(image3)
     #st.markdown("<h1 style='text-align: center; color: grey;'>RetainIT</h1>", unsafe_allow_html=True)
-    st.title("Predicting Customer Churn")
+    st.title("Anticipate al abandono de clientes")
     
     #image = Image.open('images/icone.png') 
     image2 = Image.open('Logo-3.tif')
@@ -24,22 +24,22 @@ def main():
     add_selectbox = st.sidebar.selectbox(
     "How would you like to predict?",
     ("Online", "Batch"))
-    st.sidebar.info('This app is created to predict Customer Churn')
+    st.sidebar.info('Esta aplicación fue creada para predecir el abandono de clientes. Completa el formulario con los datos de tu cliente')
     
     
     if add_selectbox == 'Online':
-        Age = st.number_input('Age:', min_value=19, max_value=80, value=19)
-        Tenure = st.number_input(' Tenure in months:', min_value=0, max_value=72, value=0 )
-        refunds = st.number_input(' Total refunds:', min_value=0, max_value=51, value=0)
-        dependents = st.number_input(' Customer has  dependents:', min_value=0, max_value=9, value=0)
-        phoneservice = st.selectbox(' Customer has phoneservice:', ['Yes', 'No'])
-        multiplelines = st.selectbox(' Customer has multiple lines:', ['Yes', 'No'])
-        internetservice= st.selectbox(' Customer has internet service:', ['Yes', 'No'])
-        deviceprotection = st.selectbox(' Customer has device protection:', ['Yes', 'No'])
-        monthlycharges= st.number_input('Monthly charges :', min_value=0, max_value=119, value=0)
-        longdistance = st.number_input('Total Long distance charges :', min_value=0, max_value=3600, value=0)
-        offer = st.selectbox(' Customer has accepted offer:', ['Yes', 'No'])
-        north = st.selectbox(' Customer lives north:', ['Yes', 'No'])
+        Age = st.number_input('Edad:', min_value=19, max_value=80, value=19)
+        Tenure = st.number_input(' Meses en relación con la empresa :', min_value=0, max_value=72, value=0 )
+        refunds = st.number_input(' Monto de reembolso recibido :', min_value=0, max_value=51, value=0)
+        dependents = st.number_input(' Número de dependientes :', min_value=0, max_value=9, value=0)
+        phoneservice = st.selectbox(' ¿Contrató servicio de telefonía? :', ['Si', 'No'])
+        multiplelines = st.selectbox(' ¿Posee múltiples líneas telfónicas? :', ['Si', 'No'])
+        internetservice= st.selectbox(' ¿Contrató servicio de internet? :', ['Si', 'No'])
+        deviceprotection = st.selectbox(' ¿Contrató servicio de protección de dispositivo?', ['Si', 'No'])
+        monthlycharges= st.number_input('Costo mensual del servicio :', min_value=0, max_value=119, value=0)
+        longdistance = st.number_input('Cargos por llamadas de larga distancia :', min_value=0, max_value=3600, value=0)
+        offer = st.selectbox(' ¿Aceptó alguna oferta?:', ['Si', 'No'])
+        north = st.selectbox(' ¿Vive en el Norte de California?: ', ['Si', 'No'])
         output= ""
         output_prob = ""
         input_dict={
@@ -59,7 +59,7 @@ def main():
         if st.button("Predict"):
             
             X = pd.DataFrame.from_dict([input_dict])
-            X[['Phone Service', 'Multiple Lines','Device Protection Plan', 'Internet Service', 'Offer', 'North']] = X[['Phone Service', 'Multiple Lines','Device Protection Plan', 'Internet Service', 'Offer', 'North']].replace({'Yes': 1, 'No': 0})
+            X[['Phone Service', 'Multiple Lines','Device Protection Plan', 'Internet Service', 'Offer', 'North']] = X[['Phone Service', 'Multiple Lines','Device Protection Plan', 'Internet Service', 'Offer', 'North']].replace({'Si': 1, 'No': 0})
             y_pred = model_rl.predict(X)
             churn = bool(y_pred)
             output_prob = model_rl.predict_proba(X).max().round(2)
@@ -73,7 +73,7 @@ def main():
         file_upload = st.file_uploader("Upload csv file for predictions", type=["csv"])
         if file_upload is not None:
             data = pd.read_csv(file_upload)
-            X = dv.transform([data])
+            X = data
             y_pred = model_rl.predict(X)
             churn = y_pred 
             churn = bool(churn)
