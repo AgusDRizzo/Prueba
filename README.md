@@ -61,6 +61,6 @@ Como resultado, entregamos dos tipos de productos. Por un lado, un tablero de Po
 
 
 
-<a href="https://app.powerbi.com/groups/me/reports/20cbbbf9-3b61-4134-b882-01e564158e8a/ReportSection1b30a7eb85a8dc4b51a2?experience=power-bi"><img src="https://github.com/No-Country/c18-76-n-data-bi/assets/144849565/48d6f587-a174-4e24-b2eb-a5312adf017d" width=500 height=200 ></a> <a href="https://datacompass.streamlit.app/"><img src="https://github.com/No-Country/c18-76-n-data-bi/assets/144849565/dfeb132e-bf05-4b79-9749-b9c74e96493d/" width=500 height=200 ></a> 
+<a href="https://app.powerbi.com/groups/me/reports/20cbbbf9-3b61-4134-b882-01e564158e8a/ReportSection1b30a7eb85a8dc4b51a2?experience=power-bi"><img src="https://github.com/AgusDRizzo/Simulacion_laboral_NC/assets/144849565/e38680dd-d139-4ee1-8c5c-84da926484b0" width=500 height=200 ></a> <a href="https://datacompass.streamlit.app/"><img src="https://github.com/No-Country/c18-76-n-data-bi/assets/144849565/dfeb132e-bf05-4b79-9749-b9c74e96493d/" width=500 height=200 ></a> 
 
 
